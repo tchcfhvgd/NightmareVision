@@ -8,6 +8,9 @@ import funkin.objects.Stage.StageData;
 
 
 //why is there 2 stagedata classes?
+//anyway reason for this is cuz i never liked the idea of the charcters being apart of the states members and the bg/fg being in sub groups to layer
+//just use insert or smth and if u need grouping u can make ur own groups // but i wanted to try a what if we put the chars inside the stage as well
+
 class StageTest extends FlxTypedGroup<FlxBasic>
 {
     var stageScript:FunkinHScript;
@@ -32,6 +35,8 @@ class StageTest extends FlxTypedGroup<FlxBasic>
     {
         _stageData = StageData.getStageFile(stagePath);
         if (_stageData == null) _stageData = StageData.template();
+
+        curStage = stagePath;
 
 
         super();
