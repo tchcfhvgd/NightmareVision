@@ -218,4 +218,22 @@ class StageData {
 
 		return cast Json.parse(rawJson);
 	}
+
+
+	public static function template():StageFile 
+	{
+		return {
+			directory: "",
+			isPixelStage: false,
+			defaultZoom: 0.8,
+			boyfriend: [500, 100],
+			girlfriend: [0, 100],
+			opponent: [-500, 100],
+			hide_girlfriend: false,
+			camera_boyfriend: [0, 0],
+			camera_opponent: [0, 0],
+			camera_girlfriend: [0, 0],
+			camera_speed: 1
+		};
+	}
 }

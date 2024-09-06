@@ -95,9 +95,18 @@ class PlayState extends MusicBeatState
 
 	public var isCameraOnForcedPos:Bool = false;
 
-	public var boyfriendMap:Map<String, Character> = new Map();
-	public var dadMap:Map<String, Character> = new Map();
-	public var gfMap:Map<String, Character> = new Map();
+
+	//temp doing this to ease into the new setup
+	public var boyfriendMap(get,never):Map<String, Character>;
+	function get_boyfriendMap() return stageExp.boyfriendMap;
+
+	public var dadMap(get,never):Map<String, Character>;
+	function get_dadMap() return stageExp.dadMap;
+
+	public var gfMap:Map<String, Character>;
+	function get_gfMap() return stageExp.gfMap;
+
+
 
 	public var BF_X:Float = 770;
 	public var BF_Y:Float = 100;
@@ -305,6 +314,9 @@ class PlayState extends MusicBeatState
 
 	public var playHUD:BaseHUD = null;
 
+
+	public var stageExp:StageTest;
+
 	// for hscripts, cant think of another way for it to work
 	override function add(Object:FlxBasic):FlxBasic { return super.add(Object); } 
 	override public function insert(position:Int, object:FlxBasic):FlxBasic { return super.insert(position, object);}
@@ -502,13 +514,24 @@ class PlayState extends MusicBeatState
 		curStage = SONG.stage;
 
 
+
 		stage = new Stage(curStage);
 		stageData = stage.stageData;
 		setStageData(stageData);
 		setOnScripts('stage', stage);
 
+
+
+
+
 		// STAGE SCRIPTS
 		stage.buildStage();
+
+
+		stageExp = new StageTest(curStage);
+
+
+
 		#if LUA_ALLOWED
 		for (script in stage.luaArray){
 			luaArray.push(script);
@@ -527,11 +550,14 @@ class PlayState extends MusicBeatState
 
 		if (callOnHScripts("onAddSpriteGroups", []) != Globals.Function_Stop)
 		{
-			add(stage);
+			// add(stage);
 
-			add(gfGroup);
-			add(dadGroup);
-			add(boyfriendGroup);
+			// add(gfGroup);
+			// add(dadGroup);
+			// add(boyfriendGroup);
+
+
+			add(stageExp);
 
 			//either we move the chars inside the stage groupings or we move the stage groupings to the state
 			//either way i personally dont like the stage system and want to rework it later
