@@ -981,6 +981,10 @@ class PlayState extends MusicBeatState
 
 	}
 
+	public function getBoyfriend() return stageExp.getBoyfriend();
+	public function getDad() return stageExp.getDad();
+	public function getGF() return stageExp.getGF();
+
 	function initNoteskinScripting() {
 
 		for(i in 0...SONG.keys){
@@ -1381,8 +1385,8 @@ class PlayState extends MusicBeatState
 			//generateStaticArrows(0, skipArrowStartTween );
 			//generateStaticArrows(1, skipArrowStartTween );
 
-			playerStrums = new PlayField(ClientPrefs.middleScroll ? (FlxG.width / 2):(FlxG.width / 2 + (FlxG.width / 4)), strumLine.y, SONG.keys, boyfriend, true, cpuControlled, 0);
-			opponentStrums = new PlayField(ClientPrefs.middleScroll?(FlxG.width / 2):(FlxG.width/2 - (FlxG.width/4)), strumLine.y, SONG.keys, dad, false, true, 1);
+			playerStrums = new PlayField(ClientPrefs.middleScroll ? (FlxG.width / 2):(FlxG.width / 2 + (FlxG.width / 4)), strumLine.y, SONG.keys, getBoyfriend(), true, cpuControlled, 0);
+			opponentStrums = new PlayField(ClientPrefs.middleScroll?(FlxG.width / 2):(FlxG.width/2 - (FlxG.width/4)), strumLine.y, SONG.keys, getDad(), false, true, 1);
 			if (!ClientPrefs.opponentStrums)
 				opponentStrums.baseAlpha = 0;
 			else if (ClientPrefs.middleScroll)
@@ -2673,8 +2677,8 @@ class PlayState extends MusicBeatState
 			if (!inCutscene) {
 				if(!cpuControlled) {
 					keyShit();
-				} else if(boyfriend.holdTimer > Conductor.stepCrotchet * 0.0011 * boyfriend.singDuration && boyfriend.animation.curAnim.name.startsWith('sing') && !boyfriend.animation.curAnim.name.endsWith('miss')) {
-					boyfriend.dance();
+				} else if(getBoyfriend().holdTimer > Conductor.stepCrotchet * 0.0011 * getBoyfriend().singDuration && getBoyfriend().animation.curAnim.name.startsWith('sing') && !getBoyfriend().animation.curAnim.name.endsWith('miss')) {
+					getBoyfriend().dance();
 					//boyfriend.animation.curAnim.finish();
 				}
 			}
@@ -3974,9 +3978,9 @@ class PlayState extends MusicBeatState
 				}
 				#end
 			}
-			else if (boyfriend.holdTimer > Conductor.stepCrotchet * 0.0011 * boyfriend.singDuration && boyfriend.animation.curAnim.name.startsWith('sing') && !boyfriend.animation.curAnim.name.endsWith('miss'))
+			else if (getBoyfriend().holdTimer > Conductor.stepCrotchet * 0.0011 * getBoyfriend().singDuration && getBoyfriend().animation.curAnim.name.startsWith('sing') && !getBoyfriend().animation.curAnim.name.endsWith('miss'))
 			{
-				boyfriend.dance();
+				getBoyfriend().dance();
 				//boyfriend.animation.curAnim.finish();
 			}
 		}
@@ -4024,8 +4028,8 @@ class PlayState extends MusicBeatState
 		totalPlayed++;
 		RecalculateRating(true);
 
-		var char:Character = boyfriend;
-		if(daNote.gfNote)char = gf;
+		var char:Character = getBoyfriend();
+		if(daNote.gfNote)char = getGF();
 
 		if(char != null && !daNote.noMissAnimation && char.hasMissAnimations)
 		{
@@ -4509,17 +4513,17 @@ class PlayState extends MusicBeatState
 			notes.sort(FlxSort.byY, ClientPrefs.downScroll ? FlxSort.ASCENDING : FlxSort.DESCENDING);
 		}
 
-		if (gf != null && curBeat % Math.round(gfSpeed * gf.danceEveryNumBeats) == 0 && gf.animation.curAnim != null && !gf.animation.curAnim.name.startsWith("sing") && !gf.stunned)
+		if (gf != null && curBeat % Math.round(gfSpeed * getGF().danceEveryNumBeats) == 0 && getGF().animation.curAnim != null && !getGF().animation.curAnim.name.startsWith("sing") && !getGF().stunned)
 		{
-			gf.dance();
+			getGF().dance();
 		}
-		if (curBeat % boyfriend.danceEveryNumBeats == 0 && boyfriend.animation.curAnim != null && !boyfriend.animation.curAnim.name.startsWith('sing') && !boyfriend.stunned)
+		if (curBeat % getBoyfriend().danceEveryNumBeats == 0 && getBoyfriend().animation.curAnim != null && !getBoyfriend().animation.curAnim.name.startsWith('sing') && !getBoyfriend().stunned)
 		{
-			boyfriend.dance();
+			getBoyfriend().dance();
 		}
-		if (curBeat % dad.danceEveryNumBeats == 0 && dad.animation.curAnim != null && !dad.animation.curAnim.name.startsWith('sing') && !dad.stunned)
+		if (curBeat % getDad().danceEveryNumBeats == 0 && getDad().animation.curAnim != null && !getDad().animation.curAnim.name.startsWith('sing') && !getDad().stunned)
 		{
-			dad.dance();
+			getDad().dance();
 		}
 
 		if (beatsPerZoom == 0) beatsPerZoom = 4;

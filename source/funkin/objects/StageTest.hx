@@ -164,6 +164,11 @@ class StageTest extends FlxTypedGroup<FlxBasic>
 
 
 
+    //might replace with getters
+    inline public function getBoyfriend() return boyfriend;
+    inline public function getDad() return dad;
+    inline public function getGF() return gf;
+
 
     
 }
