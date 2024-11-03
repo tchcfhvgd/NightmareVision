@@ -1,5 +1,6 @@
 package meta.data;
 
+#if DISCORD_ALLOWED
 import Sys.sleep;
 import discord_rpc.DiscordRpc;
 import meta.states.*;
@@ -221,3 +222,4 @@ class DiscordClient
 	}
 	#end
 }
+#end
