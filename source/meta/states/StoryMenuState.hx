@@ -1,6 +1,6 @@
 package meta.states; 
 
-#if desktop
+#if DISCORD_ALLOWED
 import meta.data.Discord.DiscordClient;
 #end
 import flixel.FlxG;
