@@ -1,7 +1,9 @@
 package meta.states.editors;
 
+#if DISCORD_ALLOWED
 import meta.data.Discord;
 import meta.data.Discord.DiscordClient;
+#end
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.FlxBasic;
