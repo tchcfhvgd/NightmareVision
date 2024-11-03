@@ -10,7 +10,9 @@ import openfl.utils.Assets;
 import haxe.Json;
 import haxe.format.JsonParser;
 import meta.data.*;
+#if DISCORD_ALLOWED
 import meta.data.Discord.DiscordClient;
+#end
 
 typedef MenuCharacterFile = {
 	var image:String;
