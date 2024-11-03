@@ -22,7 +22,7 @@ class ClientPrefs {
 	public static var darnell:Bool = #if HIT_SINGLE true #else false #end;
 
 	//-----------------------------------------//
-	public static var gpuCaching:Bool = true;
+	public static var gpuCaching:Bool = false;
 	public static var loadingThreads:Int = Math.floor(Std.parseInt(Sys.getEnv("NUMBER_OF_PROCESSORS"))/2);
 	public static var multicoreLoading:Bool = false;
 
