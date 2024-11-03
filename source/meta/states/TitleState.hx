@@ -39,7 +39,9 @@ import meta.states.*;
 import meta.states.substate.*;
 import gameObjects.*;
 import gameObjects.shader.*;
+#if DISCORD_ALLOWED
 import meta.data.Discord.DiscordClient;
+#end
 
 using StringTools;
 typedef TitleData =
