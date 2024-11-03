@@ -84,7 +84,9 @@ class Paths
 		// run the garbage collector for good measure lmfao
 		System.gc();
 		#if cpp
-		cpp.vm.Gc.compact();
+		cpp.NativeGc.run(true);
+		#elseif hl
+		hl.Gc.major();
 		#end
 	}
 
@@ -501,7 +503,7 @@ class Paths
 
 	#if MODS_ALLOWED
 	inline static public function mods(key:String = '') {
-		return 'content/' + key;
+		return Sys.getCwd() + 'content/' + key;
 	}
 
 	inline static public function modsFont(key:String) {
@@ -560,7 +562,7 @@ class Paths
 				return fileToCheck;
 
 		}
-		return 'content/' + key;
+		return Sys.getCwd() + 'content/' + key;
 	}
 
 	public static var globalMods:Array<String> = [];
